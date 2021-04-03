@@ -1,8 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Course
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.urls import reverse_lazy
 
 
 
@@ -27,39 +25,32 @@ class OwnerEditMixins(object):
         return super().form_valid(form)
 
 
-class OwnerCourseMixin(Ownermixins, LoginRequiredMixin, PermissionRequiredMixin):
+class OwnerCourseMixin(Ownermixins):
     model = Course 
-    fields =  ['subject', 'title', 'slug', 'overView']
+    fields =  ['subject', 'title', 'slug', 'overview']
     success_url = reverse_lazy('manage_course_list')
-
-
 
 class OwnerCourseEditMixn(OwnerCourseMixin, OwnerEditMixins ):
     template_name = 'courses/manage/course/form.html'
 
-
-
-class ManageCourseListView(OwnerCourseEditMixn, ListView):
+class CourseCreateView(OwnerCourseEditMixn, ListView):
     template_name= 'courses/manage/course/list.html'
-    permission_required = 'courses.view_course'
+
 
 
 
 class CourseCreateView(OwnerCourseEditMixn, CreateView):
-    permission_required = 'courses.add_course'
+    pass
 
 
 
 
 class CourseUpdateView(OwnerCourseEditMixn, UpdateView):
-    permission_required = 'courses.change_course'
-
+    pass
 
 
 
 
 class CourseDeleteView(OwnerCourseMixin, DeleteView):
-   
     template_name = 'courses/manage/course/delete.html'
-    permission_required = 'courses.delete_course'
-    
+ 

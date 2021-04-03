@@ -2,8 +2,6 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Course
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.urls import reverse_lazy
-
 
 
 # class ManagecourseListView(ListView):
@@ -29,7 +27,7 @@ class OwnerEditMixins(object):
 
 class OwnerCourseMixin(Ownermixins, LoginRequiredMixin, PermissionRequiredMixin):
     model = Course 
-    fields =  ['subject', 'title', 'slug', 'overView']
+    fields =  ['subject', 'title', 'slug', 'overview']
     success_url = reverse_lazy('manage_course_list')
 
 
@@ -59,7 +57,6 @@ class CourseUpdateView(OwnerCourseEditMixn, UpdateView):
 
 
 class CourseDeleteView(OwnerCourseMixin, DeleteView):
-   
     template_name = 'courses/manage/course/delete.html'
     permission_required = 'courses.delete_course'
-    
+ 

@@ -59,7 +59,7 @@ class CourseUpdateView(OwnerCourseEditMixn, UpdateView):
 
 
 class CourseDeleteView(OwnerCourseMixin, DeleteView):
-   
+    model = Course
     template_name = 'courses/manage/course/delete.html'
     permission_required = 'courses.delete_course'
     

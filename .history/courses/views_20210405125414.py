@@ -1,14 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .models import Course, Module, Content
+from .models import Course
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateResponseMixin, View
 from .forms import moduleFormset
 from django.apps import apps
-from django.forms.models import modelform_factory
-
-
 
 
 # class ManagecourseListView(ListView):
@@ -103,21 +100,4 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
 
     def get_model(self, model_name):
         if model_name in ['text', 'video', 'image', 'file']:
-            return apps.get_model(app_label='courses', model_name=model_name)
-        
-        return None 
-
-    
-    def get_form(self, model, *args ,**kwargs):
-        Form = modelform_factory(model, exclude=['owner', 'order', 'created', 'updated'])
-        return Form(*args, **kwargs)
-
-
-    def dispatch(self, request, module_id, model_name, id=None):
-        self.module = get_object_or_404(Module, id=model_name, course__owner=request.user)
-        self.model = self.get_model(model_name)
-
-        if id:
-            self.obj = get_object_or_404(self.model, id=id, owner=request.user)
-
-        return super().dispatch(request, module_id, model_name, id) 
+            return 

@@ -114,7 +114,7 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
 
 
     def dispatch(self, request, module_id, model_name, id=None):
-        self.module = get_object_or_404(Module, id=module_id, Course__owner=request.user)
+        self.module = get_object_or_404(Module, id=model_name, Course__owner=request.user)
         self.model = self.get_model(model_name)
 
         if id:
@@ -124,28 +124,22 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
 
 
     def get(self, request, module_id, model_name, id=None):
-
-        form = self.get_form(self.model, instance=self.obj)
-        return self.render_to_response({'form': form, 'object': self.obj})
-    
+    form = self.get_form(self.model, instance=self.obj)
+    return self.render_to_response({'form': form,
+                                    'object': self.obj})
     def post(self, request, module_id, model_name, id=None):
-        form = self.get_form(self.model, isinstance=self.obj, data= request.POST, files=request.FILES)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.owner = request.user
-            obj.save()
-
-            if not id:
-                Content.objects.create(module=self.module, item=obj)
-            
-            return redirect('module_content_list', self.module.id)
-        
-        return self.render_to_response({'form':form, 'object': self.obj})
-
-
-class ContentDeleteView(View):
-    def post(self, request, id):
-        content = get_object_or_404(Content,  id=id, moduel__Course__owner=request.user)
-        module = content.moduel
-        content.item.delete()
-        return redirect('module_content_list', module.id)
+    form = self.get_form(self.model,
+                         instance=self.obj,
+                         data=request.POST,
+                         files=request.FILES)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.owner = request.user
+        obj.save()
+        if not id:
+            # new content
+            Content.objects.create(module=self.module,
+                                   item=obj)
+        return redirect('module_content_list', self.module.id)
+    return self.render_to_response({'form': form,
+                                    'object': self.obj})

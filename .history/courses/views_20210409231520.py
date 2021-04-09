@@ -126,7 +126,8 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
     def get(self, request, module_id, model_name, id=None):
 
         form = self.get_form(self.model, instance=self.obj)
-        return self.render_to_response({'form': form, 'object': self.obj})
+        return self.render_to_response({'form': form,
+                                    'object': self.obj})
     
     def post(self, request, module_id, model_name, id=None):
         form = self.get_form(self.model, isinstance=self.obj, data= request.POST, files=request.FILES)
@@ -141,11 +142,3 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
             return redirect('module_content_list', self.module.id)
         
         return self.render_to_response({'form':form, 'object': self.obj})
-
-
-class ContentDeleteView(View):
-    def post(self, request, id):
-        content = get_object_or_404(Content,  id=id, moduel__Course__owner=request.user)
-        module = content.moduel
-        content.item.delete()
-        return redirect('module_content_list', module.id)

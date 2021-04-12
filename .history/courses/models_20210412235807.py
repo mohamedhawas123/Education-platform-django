@@ -66,7 +66,8 @@ class Content(models.Model):
         ordering=  ['order']
 
 
-    
+    def __str__(self):
+        return self.moduel
 
    
 
@@ -82,10 +83,6 @@ class ItemBase(models.Model):
 
     class Meta:
         abstract = True
-
-    
-    def __str__(self):
-        return self.title
 
 
 

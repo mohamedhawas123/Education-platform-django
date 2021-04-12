@@ -38,12 +38,7 @@ class Module(models.Model):
     description = models.TextField(blank=True)
     order = OrderField(blank=True, for_fields=['Course'])
 
-    class Meta:
-        ordering = ['order']
-
-
-    def __str__(self):
-        return f"{self.order}. {self.title}"
+    
 
 
 
@@ -62,14 +57,6 @@ class Content(models.Model):
     item = GenericForeignKey('content_type', 'object_id')
     order = OrderField(blank=True, for_fields=['moduel'])
 
-    class Meta:
-        ordering=  ['order']
-
-
-    
-
-   
-
     
 
 
@@ -82,10 +69,6 @@ class ItemBase(models.Model):
 
     class Meta:
         abstract = True
-
-    
-    def __str__(self):
-        return self.title
 
 
 

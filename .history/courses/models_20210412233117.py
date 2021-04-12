@@ -38,12 +38,7 @@ class Module(models.Model):
     description = models.TextField(blank=True)
     order = OrderField(blank=True, for_fields=['Course'])
 
-    class Meta:
-        ordering = ['order']
-
-
-    def __str__(self):
-        return f"{self.order}. {self.title}"
+    
 
 
 
@@ -66,13 +61,6 @@ class Content(models.Model):
         ordering=  ['order']
 
 
-    
-
-   
-
-    
-
-
 
 class ItemBase(models.Model):
     owner = models.ForeignKey(User, related_name='%(class)s_related', on_delete=models.CASCADE)
@@ -82,10 +70,6 @@ class ItemBase(models.Model):
 
     class Meta:
         abstract = True
-
-    
-    def __str__(self):
-        return self.title
 
 
 

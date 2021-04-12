@@ -7,7 +7,7 @@ from django.views.generic.base import TemplateResponseMixin, View
 from .forms import moduleFormset
 from django.apps import apps
 from django.forms.models import modelform_factory
-from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
+from braces.views import CsrfExemptMixin
 
 
 
@@ -168,11 +168,3 @@ class ModuleContentListView(TemplateResponseMixin, View):
 
 
 
-class ModuleOrderView(CsrfExemptMixin, JsonRequestResponseMixin):
-    
-    def post(self, request):
-        for id, order in self.request_json.items():
-            Module.objects.filter(id=id, Course__owner=request.user).update(order=order)
-
-        
-        return self.render_json_response({'saved': 'Ok'})

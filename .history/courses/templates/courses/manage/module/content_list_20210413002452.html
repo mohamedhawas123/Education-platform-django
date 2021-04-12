@@ -35,7 +35,7 @@
       {% for content in module.contents.all %}
         <div data-id="{{ content.id }}">
           {% with item=content.item %}
-            <p>{{ content.item }} ({{item|model_name}}) </p>
+            <p>{{ content.item }}  </p>
             <a href="{% url "module_content_update" module.id item|model_name item.id %}">
                 Edit
               </a>

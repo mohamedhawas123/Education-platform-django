@@ -12,10 +12,10 @@
       <p>
         <a href="{% url "course_list_subject" subject.slug %}">
         {{ subject.title }}</a>.
-        {{ object.moduels.count }} modules.
-        Instructor: {{ object.owner }}
+        {{ object.modules.count }} modules.
+        Instructor: {{ object.owner.get_full_name }}
       </p>
-      {{ object.overView|linebreaks }}
+      {{ object.overview|linebreaks }}
     </div>
   {% endwith %}
 {% endblock %}

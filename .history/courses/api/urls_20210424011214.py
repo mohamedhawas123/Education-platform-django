@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import SubjectListView, SubjectDetailView
+from .views import SubjectListView, SubjectDetailView, CourseEnrollView
 from rest_framework import routers
 from . import views
 

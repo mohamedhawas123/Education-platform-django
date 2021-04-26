@@ -55,9 +55,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-ASGI_APPLICATION = 'educa.routing.application'
-
 ROOT_URLCONF = 'educa.urls'
 
 TEMPLATES = [

@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'students',
     'embed_video',
     'rest_framework',
-    'chat',
-    'channels',
+    'chat'
 ]
 
 MIDDLEWARE = [
@@ -54,9 +53,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-
-ASGI_APPLICATION = 'educa.routing.application'
 
 ROOT_URLCONF = 'educa.urls'
 

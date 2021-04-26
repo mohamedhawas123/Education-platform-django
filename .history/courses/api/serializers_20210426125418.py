@@ -20,7 +20,7 @@ class CourseSerializers(serializers.ModelSerializer):
     # moduels = ModuleSerializer(many=True, read_only=True)
     class Meta:
         model = Course
-        fields = ['id', 'owner', 'students', 'title', 'subject', 'slug', 'overView', 'created', 'moduels']
+        fields = ['owner', 'students', 'title', 'subject', 'slug', 'overView', 'created', 'moduels']
 
 
     def get_moduels(self, obj):
@@ -43,22 +43,19 @@ class ContentSerialisers(serializers.ModelSerializer):
 
 
 class ModuleWithContentSerialiers(serializers.ModelSerializer):
-
-    contents = ContentSerialisers(many=True)
-
     class Meta:
         model = Module
         fields = ['Course', 'title', 'description', 'order', 'contents']
 
 
 
-class CourseWithContentSerializers(serializers.ModelSerializer):
+class CourseWithContentSerializers(serializers.ModelField):
 
-    moduels = ModuleWithContentSerialiers(many=True)
+    moduels = 
 
     class Meta:
         model = Course
-        fields = ['id', 'owner', 'students', 'title', 'subject', 'slug', 'overView', 'created', 'moduels']
+        fields = ['owner', 'students', 'title', 'subject', 'slug', 'overView', 'created', 'moduels']
 
 
 

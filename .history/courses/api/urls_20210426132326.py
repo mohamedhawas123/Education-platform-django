@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import SubjectListView, SubjectDetailView, CourseViewList
+from .views import SubjectListView, SubjectDetailView
 from rest_framework import routers
 from . import views
 
@@ -14,5 +14,5 @@ urlpatterns = [
     path('subjects/<pk>/', SubjectDetailView.as_view(), name="subject_detail"),
     # path('courses/', ModuleListView.as_view(), name="course_list" ),
     path('', include(router.urls)),
-   # path('courses/<pk>/enroll/', CourseViewList.as_view(), name='course_enroll'),
+    path('courses/<pk>/enroll/', CourseEnrollView.as_view(), name='course_enroll'),
 ]

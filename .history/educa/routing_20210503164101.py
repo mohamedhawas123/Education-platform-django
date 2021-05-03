@@ -3,14 +3,11 @@ from channels.auth import AuthMiddlewareStack
 import chat.routing
 
 
-
-
-
-
 application = ProtocolTypeRouter({
-    'websocket': AuthMiddlewareStack(
+    
+    'websocket': AuthMiddlewareStack({
         URLRouter(
             chat.routing.websocket_urlpatterns
-        )
-    ),
+        ),
+    })
 })

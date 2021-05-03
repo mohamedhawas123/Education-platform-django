@@ -7,7 +7,6 @@ class ChatConsumer(WebsocketConsumer):
 
     def connect(self):
         self.accept()
-        
 
     
     def disconnect(self):

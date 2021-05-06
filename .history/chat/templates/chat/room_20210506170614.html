@@ -19,33 +19,13 @@ chatSocket.onmessage = function(e) {
   var data = JSON.parse(e.data)
   var message = data.message
   var $chat = $('#chat');
-  $chat.append('<div class="message">' + message + '</div>');
+  $chat.append('<div class="message"> message </div>');
   $chat.scrollTop($chat[0].scrollHeight)
 }
 
 chatSocket.onclose = function(e) {
   console.error('Chat socket has been closed')
 }
-
-var $input = $('#chat-message-input');
-var $submit = $('#chat-message-submit');
-
-$submit.click( function() {
-  var message = $input.val();
-  if(message) {
-    chatSocket.send(JSON.stringify({'message': message}))
-    $input.val('');
-    $input.focus();
-
-    $input.keyup(function(e) {
-      if(e.which ===13) {
-        $submit.click();
-      }
-    })
-
-  }
-} )
-
 
 console.log(url)
 

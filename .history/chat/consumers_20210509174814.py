@@ -5,7 +5,7 @@ from django.utils import timezone
 from channels.generic.websocket import AsyncWebsocketConsumer
 
 
-class ChatConsumer(AsyncWebsocketConsumer):
+class ChatConsumer(WebsocketConsumer):
 
     async def connect(self):
         self.user = self.scope['user']

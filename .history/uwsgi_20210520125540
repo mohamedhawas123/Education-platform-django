@@ -1,0 +1,8 @@
+apt-get install build-essential
+
+sudo uwsgi --module=educa.wsgi:application \
+--env=DJANGO_SETTINGS_MODULE=educa.settings.pro \
+--master --pidfile=/tmp/project-master.pid \
+--http=127.0.0.1:8000 \
+--uid=1000 \
+--virtualenv=/home/env/educa/

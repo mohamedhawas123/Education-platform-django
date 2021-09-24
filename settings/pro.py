@@ -8,16 +8,16 @@ ADMINS = (
     'saiff', 'seifbond77@gmail.com',
 )
 
-ALLOWED_HOSTS = ['educaproject.com', 'www.educaproject.com', '127.0.0.1']
+ALLOWED_HOSTS = ['learnit-platform.herokuapp.com', '127.0.0.1']
 
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': "educaa",
-       "USER": "educa",
-       "PASSWORD": "panzer123",
-       "HOST": 'localhost',
-       "PORT": '',
+       'NAME': "d7o5v2edrh59q8",
+       "USER": "easnvcidlpsron",
+       "PASSWORD": "873a1d9b222aa13422f21e974d4df943229660ecb6619885a4121fc271e9b3a2",
+       "HOST": 'ec2-35-171-171-27.compute-1.amazonaws.com',
+       "PORT": '5432',
 
 
 }
